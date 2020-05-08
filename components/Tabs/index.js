@@ -25,11 +25,7 @@ axios
         console.log('Error:');
     })
 
-// loop through data to make tabs
 
-// tabTopics.forEach(item =>{
-//     placeTabs.appendChild(createTab(item));
-// })
 
 // create tabs component
 
