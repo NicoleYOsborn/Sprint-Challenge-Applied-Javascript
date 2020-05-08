@@ -29,9 +29,9 @@ axios
         return subtopics;
     }).then(result => {
 
-        Object.entries(result).forEach(topic => {
-            console.log(topic)
-            topic[1].forEach(card => {
+        Object.values(result).forEach(topic => {
+ 
+            topic.forEach(card => {
               
                 cardContainer.appendChild(createCard(card))
             });
