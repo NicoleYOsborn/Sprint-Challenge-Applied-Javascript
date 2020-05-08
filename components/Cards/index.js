@@ -19,35 +19,49 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 const cardContainer = document.querySelector('.cards-container');
-
+var subtopics
+var cardData
 axios
     .get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
-        let subtopics = response.data.articles;
+
+        subtopics = response.data.articles;
         return subtopics;
-//         debugger
-//     }) .then(subtopics =>{
-//         let cardData
-//         subtopics.forEach(item =>{
-//             cardData = item;
-//         })
-//         return cardData;
-// debugger
-//     }).then(cardData =>{
-//         cardData.forEach(item =>{
-//             cardContainer.appendChild(createCard(item));
-//         })
-    })
+    }).then(result => {
 
-    .catch(error => {
-        console.log('Error:');
-    })
+        Object.entries(result).forEach(topic => {
+            console.log(topic)
+            topic[1].forEach(card => {
+              
+                cardContainer.appendChild(createCard(card))
+            });
+        });
+    });
 
+
+
+//  .then(subtopics =>{
+//        subtopics.forEach(item =>{
+//         cardData = item;
+//     })
+//     return cardData
+// }).then(cardData =>{
+//     cardData.forEach(item)
+// }
+
+// .catch(error => {
+//     console.log('Error:');
+// })
+// cardContainer.appendChild(createCard(subtopics[0][0]))
 
 // create component
 
-function createCArd(articleObj){
-    const {headline, authorPhoto, authorName} = articleObj;
+function createCard(articleObj) {
+    const {
+        headline,
+        authorPhoto,
+        authorName
+    } = articleObj;
 
     const card = document.createElement('div');
     const cardHeadline = document.createElement('div');
@@ -75,4 +89,3 @@ function createCArd(articleObj){
 
 }
 
-cardContainer.appendChild(createCArd({headline: 'I am a headline', authorPhoto: 'I am a photo', authorName: 'I am a name'}))
