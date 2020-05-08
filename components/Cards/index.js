@@ -20,6 +20,30 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 const cardContainer = document.querySelector('.cards-container');
 
+axios
+    .get('https://lambda-times-backend.herokuapp.com/articles')
+    .then(response => {
+        let subtopics = response.data.articles;
+        return subtopics;
+//         debugger
+//     }) .then(subtopics =>{
+//         let cardData
+//         subtopics.forEach(item =>{
+//             cardData = item;
+//         })
+//         return cardData;
+// debugger
+//     }).then(cardData =>{
+//         cardData.forEach(item =>{
+//             cardContainer.appendChild(createCard(item));
+//         })
+    })
+
+    .catch(error => {
+        console.log('Error:');
+    })
+
+
 // create component
 
 function createCArd(articleObj){
